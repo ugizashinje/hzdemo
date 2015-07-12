@@ -25,6 +25,15 @@ public class Command {
             m = pattern.matcher(strCommand);
             m.find();
 
+            if ("GC".equals(strCommand.toUpperCase().trim())){
+                long start = System.nanoTime();
+                System.gc();
+                long end = System.nanoTime();
+                double miliSeconds = (end - start) / 1_000_000.0;
+                System.out.println("gc event lasted " + miliSeconds );
+                return;
+            }
+
             String mapName = m.group(1);
             String operation = m.group(2);
             if (operation != null) {

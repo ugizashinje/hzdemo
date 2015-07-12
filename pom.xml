@@ -9,7 +9,7 @@
     <groupId>org.ugizashinje</groupId>
     <version>0.1</version>
     <properties>
-        <hazelcast.version>3.3-RC2</hazelcast.version>
+        <hazelcast.version>3.4.2</hazelcast.version>
     </properties>
 
     <build>
@@ -39,6 +39,48 @@
                 <mainClass>org.ugizashinje.DemoMain</mainClass>
             </configuration>
         </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+
+            <configuration>
+            <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>org.ugizashinje.DemoMain</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+
+      </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>org.ugizashinje.DemoMain</mainClass>
+                        </manifest>
+                    </archive>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assemble-all</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -57,6 +99,16 @@
             <scope>test</scope>
         </dependency>
 
+    <dependency>
+          <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>1.1</version>
+    </dependency>
     </dependencies>
 
 

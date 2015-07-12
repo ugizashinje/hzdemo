@@ -1,6 +1,7 @@
 package org.ugizashinje;
 
 import com.hazelcast.config.Config;
+import com.hazelcast.config.ManagementCenterConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 
@@ -16,6 +17,12 @@ public class DemoMain {
 
     public static void  main(String[] args) throws  Exception{
         Config config = new Config();
+        ManagementCenterConfig mancenter = new ManagementCenterConfig("http://localhost:8080/mancenter",100);
+
+        // TODO enable management center
+        mancenter.setEnabled(false);
+
+        config.setManagementCenterConfig(mancenter);
         config.setInstanceName("Java Demo instance");
 
         HazelcastInstance hz = Hazelcast.getOrCreateHazelcastInstance(config);
